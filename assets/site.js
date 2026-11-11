@@ -17,6 +17,14 @@
     else if (!groups[id] && el.tagName !== 'SECTION') { groups[id] = true; el.classList.add('is-next'); }
   });
 
+  // Barre de progression des projets
+  document.querySelectorAll('.progress[data-dates]').forEach(function (bar) {
+    var ds = bar.getAttribute('data-dates').split(' ').filter(Boolean);
+    var done = ds.filter(function (d) { return new Date(d + 'T23:59:59') < new Date(); }).length;
+    bar.querySelector('.progress-bar').style.width = (100 * done / ds.length) + '%';
+    bar.querySelector('.progress-label').textContent = done + ' / ' + ds.length + ' séances';
+  });
+
   // Champs texte, zones de texte, cases et boutons radio
   document.querySelectorAll('input[data-store], textarea[data-store]').forEach(function (el) {
     var k = el.getAttribute('data-store'), v = store.get(k);

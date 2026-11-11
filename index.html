@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=bbe68ba8">
+<link rel="stylesheet" href="assets/style.css?v=260ffab8">
 </head>
 <body>
 <header class="site-header">
@@ -21,44 +21,62 @@
 </header>
 <main>
 
-<section class="hero wrap">
-  <p class="eyebrow">Site de la classe · 2026-2027</p>
-  <h1>Terminale TEB-AA</h1>
-  <p class="lead">Toutes les consignes, séances et ressources de la classe sont ici. Les fichiers lourds (plans, CCTP, maquettes) sont sur le Drive, accessibles depuis chaque séance.</p>
+<section class="hero-band">
+  <div class="wrap hero-split">
+    <div class="hero-text">
+      <p class="eyebrow">Site de la classe · 2026-2027</p>
+      <h1>Terminale TEB-AA</h1>
+      <p class="hero-sub">Bac Pro Technicien d&#x27;études du bâtiment · option B Assistant en architecture</p>
+      <p class="lead">Consignes, séances, fiches à remplir et ressources : tout le travail de la classe est ici. Les fichiers lourds (plans, CCTP, maquettes) sont sur le Drive, accessibles depuis chaque séance.</p>
+      <div class="actions"><a class="btn" href="mdqb/index.html">Projet en cours : MDQB</a><a class="btn btn-ghost" href="#agenda">Voir l'agenda</a></div>
+    </div>
+    <figure class="planche">
+      <img src="assets/img/mdqb-photo.jpg" alt="La maison de quartier Bagatelle, Toulouse">
+      <figcaption><span class="mono">PL-00</span><span>Maison de quartier Bagatelle · Toulouse</span></figcaption>
+    </figure>
+  </div>
 </section>
 <section class="wrap section">
-  <h2>Projets</h2>
-  <div class="poles"><a class="projet-card is-on" href="mdqb/index.html">
-  <span class="projet-top"><span class="mono">MDQB</span><span class="statut is-on">En cours</span></span>
-  <span class="pole-name">Maison de quartier Bagatelle</span>
-  <span class="pole-role">Compléter la maquette clos-couvert d&#x27;un ERP avec le second œuvre, puis produire les plans du dossier PRO.</span>
-  <dl class="kv"><div><dt>Période</dt><dd>13/11 → 18/12/2026</dd></div><div><dt>Unités</dt><dd>U22 · Production BIM</dd></div></dl>
-  <span class="pole-go">Ouvrir le projet</span>
+  <div class="section-head"><span class="section-num mono">01</span><h2>Projets</h2></div>
+  <div class="projets"><a class="projet-card is-on" href="mdqb/index.html">
+  <span class="projet-img"><img src="assets/img/mdqb-perspective.jpg" alt="Perspective de la maison de quartier Bagatelle" loading="lazy"><span class="statut is-on">En cours</span></span>
+  <span class="projet-body">
+    <span class="projet-num mono">PROJET 01 · MDQB</span>
+    <span class="projet-title">Maison de quartier Bagatelle</span>
+    <span class="projet-resume">Compléter la maquette clos-couvert d&#x27;un ERP avec le second œuvre, puis produire les plans du dossier PRO.</span>
+    <span class="projet-meta"><span><b>Période</b>13/11 → 18/12/2026</span><span><b>Unités</b>U22 · Production BIM</span></span>
+    <div class="progress" data-dates="2026-11-13 2026-11-20 2026-11-27 2026-12-11 2026-12-18"><span class="progress-bar"></span><span class="progress-label mono">0 / 5 séances</span></div>
+    <span class="btn projet-cta">Ouvrir le projet →</span>
+  </span>
 </a><a class="projet-card" href="villa/index.html">
-  <span class="projet-top"><span class="mono">VILLA</span><span class="statut">En attente</span></span>
-  <span class="pole-name">Villa DUPONT, Quillan</span>
-  <span class="pole-role">Dossier de permis de construire d&#x27;une maison individuelle, en trois pôles.</span>
-  <dl class="kv"><div><dt>Période</dt><dd>Après Noël</dd></div><div><dt>Unités</dt><dd>U21 · U22 · U23</dd></div></dl>
-  <span class="pole-go">Ouvrir le projet</span>
+  <span class="projet-img"><img src="assets/img/villa-permis.jpg" alt="Illustration : maison et dossier de permis de construire" loading="lazy"><span class="statut">En attente</span></span>
+  <span class="projet-body">
+    <span class="projet-num mono">PROJET 02 · VILLA</span>
+    <span class="projet-title">Villa DUPONT, Quillan</span>
+    <span class="projet-resume">Dossier de permis de construire d&#x27;une maison individuelle, en trois pôles.</span>
+    <span class="projet-meta"><span><b>Période</b>Après Noël</span><span><b>Unités</b>U21 · U22 · U23</span></span>
+    <div class="progress is-off"><span class="progress-label">Démarrage après Noël</span></div>
+    <span class="btn projet-cta">Ouvrir le projet →</span>
+  </span>
 </a></div>
 </section>
-<section class="wrap section">
-  <h2>Agenda U22</h2>
+<section class="wrap section" id="agenda">
+  <div class="section-head"><span class="section-num mono">02</span><h2>Agenda U22</h2></div>
   <p class="section-lead">La prochaine séance est signalée, les séances passées sont atténuées.</p>
-  <ol class="agenda"><li data-date="2026-11-13"><a href="mdqb/s1.html"><span class="mono">Ven. 13/11</span><span>MDQB · S1 — Découvrir le projet : quoi modéliser, et où ?</span><span class="badge-next">Prochaine</span></a></li><li data-date="2026-11-20"><a href="mdqb/s2.html"><span class="mono">Ven. 20/11</span><span>MDQB · S2 — Préparer la maquette : fond de plan et types de parois</span><span class="badge-next">Prochaine</span></a></li><li data-date="2026-11-27"><a href="mdqb/s3.html"><span class="mono">Ven. 27/11</span><span>MDQB · S3 — Cloisonnement et menuiseries intérieures</span><span class="badge-next">Prochaine</span></a></li><li data-date="2026-12-11"><a href="mdqb/s4.html"><span class="mono">Ven. 11/12</span><span>MDQB · S4 — Sols, faux plafonds, pièces et surfaces</span><span class="badge-next">Prochaine</span></a></li><li data-date="2026-12-18"><a href="mdqb/s5.html"><span class="mono">Ven. 18/12</span><span>MDQB · S5 — Rendu du dossier PRO</span><span class="badge-next">Prochaine</span></a></li></ol>
+  <ol class="agenda"><li data-date="2026-11-13"><a href="mdqb/s1.html"><span class="ag-num mono">S1</span><span class="ag-date mono">Ven. 13/11 · 4 h</span><span class="ag-title">Découvrir le projet : quoi modéliser, et où ?<small>MDQB · TD 01</small></span><span class="badge-next">Prochaine</span></a></li><li data-date="2026-11-20"><a href="mdqb/s2.html"><span class="ag-num mono">S2</span><span class="ag-date mono">Ven. 20/11 · 3 h</span><span class="ag-title">Préparer la maquette : fond de plan et types de parois<small>MDQB · TP 01</small></span><span class="badge-next">Prochaine</span></a></li><li data-date="2026-11-27"><a href="mdqb/s3.html"><span class="ag-num mono">S3</span><span class="ag-date mono">Ven. 27/11 · 4 h</span><span class="ag-title">Cloisonnement et menuiseries intérieures<small>MDQB · TP 02</small></span><span class="badge-next">Prochaine</span></a></li><li data-date="2026-12-11"><a href="mdqb/s4.html"><span class="ag-num mono">S4</span><span class="ag-date mono">Ven. 11/12 · 4 h</span><span class="ag-title">Sols, faux plafonds, pièces et surfaces<small>MDQB · TP 03</small></span><span class="badge-next">Prochaine</span></a></li><li data-date="2026-12-18"><a href="mdqb/s5.html"><span class="ag-num mono">S5</span><span class="ag-date mono">Ven. 18/12 · 3 h</span><span class="ag-title">Rendu du dossier PRO<small>MDQB · Évaluation</small></span><span class="badge-next">Prochaine</span></a></li></ol>
 </section>
 <section class="wrap section two-col">
-  <div>
-    <h2>Règles de travail</h2>
-    <ul class="list"><li>Un dossier par projet, organisé comme indiqué sur la page du projet.</li><li>Vos réponses saisies dans les pages restent sur le poste : <b>exportez ou imprimez avant de partir</b>.</li><li>Les livrables se déposent sur le Drive, au nom convenu, à la fin de chaque séance.</li></ul>
+  <div class="note">
+    <div class="section-head"><span class="section-num mono">03</span><h2>Règles de travail</h2></div>
+    <ul class="list"><li>Un dossier par projet, organisé comme indiqué sur la page du projet.</li><li>Vos réponses saisies dans les pages restent sur le poste : <b>imprimez en PDF ou téléchargez avant de partir</b>.</li><li>Les livrables se déposent sur le Drive, au nom convenu, à la fin de chaque séance.</li></ul>
   </div>
-  <div>
-    <h2>Épreuve E22</h2>
-    <ul class="list"><li>Production de documents graphiques · 6 h sur poste · coefficient 3.</li><li>Compétences évaluées : C2.3 et C3.4.</li><li>Toujours demandé : maquette .ifc + format natif, plans mis en page, détail à main levée.</li></ul>
+  <div class="note">
+    <div class="section-head"><span class="section-num mono">04</span><h2>Épreuve E22</h2></div>
+    <ul class="list"><li>Production de documents graphiques · 6 h sur poste · coefficient 3.</li><li>Compétences évaluées : <b>C2.3</b> et <b>C3.4</b>.</li><li>Toujours demandé : maquette .ifc + format natif, plans mis en page, détail à main levée.</li></ul>
   </div>
 </section>
 </main>
 
-<script src="assets/site.js?v=bbe68ba8"></script>
+<script src="assets/site.js?v=260ffab8"></script>
 </body>
 </html>

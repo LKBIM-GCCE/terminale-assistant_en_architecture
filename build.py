@@ -21,10 +21,10 @@ e = html.escape
 # =====================================================================
 DRIVE = {
     "mdqb_dossier": "",       # dossier Drive complet du projet MDQB
-    "mdqb_plans": "",         # PDF : 05 plan RDC, 06 coupes, 07 façades, 09 axonométries
-    "mdqb_dwg": "",           # DWG : MDQB-RDC 1-50, MDQB-COUPE A-A
-    "mdqb_cctp": "",          # CCTP lots 03, 06, 07, 08
-    "mdqb_maquette": "",      # maquette clos-couvert .rvt + .ifc
+    "mdqb_plans": "https://drive.google.com/drive/folders/1UXOqW2vhD6NeYxaaRi0MgC9dU_xTkAI4?usp=sharing",         # PDF : 05 plan RDC, 06 coupes, 07 façades, 09 axonométries
+    "mdqb_dwg": "https://drive.google.com/drive/folders/1UXOqW2vhD6NeYxaaRi0MgC9dU_xTkAI4?usp=sharing",           # DWG : MDQB-RDC 1-50, MDQB-COUPE A-A
+    "mdqb_cctp": "https://drive.google.com/drive/folders/1TS-9cxZoPV3If0CxvfkYHG1uH3xUf70Y?usp=drive_link",          # CCTP lots 03, 06, 07, 08
+    "mdqb_maquette": "https://drive.google.com/drive/folders/1VJixy9ycNWsSFWpldeWZAxLlIw09SQsr?usp=drive_link",      # maquette clos-couvert .rvt + .ifc
     "mdqb_depot": "",         # dossier de dépôt des livrables élèves
 }
 
@@ -39,10 +39,12 @@ CLASSE = {
 PROJETS = [
     {"slug": "mdqb", "titre": "Maison de quartier Bagatelle", "code": "MDQB",
      "statut": "En cours", "periode": "13/11 → 18/12/2026", "unite": "U22 · Production BIM",
-     "resume": "Compléter la maquette clos-couvert d'un ERP avec le second œuvre, puis produire les plans du dossier PRO."},
+     "resume": "Compléter la maquette clos-couvert d'un ERP avec le second œuvre, puis produire les plans du dossier PRO.",
+     "image": "assets/img/mdqb-perspective.jpg", "alt": "Perspective de la maison de quartier Bagatelle", "nb": 5},
     {"slug": "villa", "titre": "Villa DUPONT, Quillan", "code": "VILLA",
      "statut": "En attente", "periode": "Après Noël", "unite": "U21 · U22 · U23",
-     "resume": "Dossier de permis de construire d'une maison individuelle, en trois pôles."},
+     "resume": "Dossier de permis de construire d'une maison individuelle, en trois pôles.",
+     "image": "assets/img/villa-permis.jpg", "alt": "Illustration : maison et dossier de permis de construire", "nb": 0},
 ]
 
 # =====================================================================
@@ -181,7 +183,7 @@ def table_types():
 # Les séances
 # ---------------------------------------------------------------------
 SEANCES = [
-  {"n": 1, "date": "2026-11-13", "jour": "Ven. 13/11", "duree": "4 h", "type": "TD 01",
+  {"n": 1, "img": "mdqb-photo.jpg", "date": "2026-11-13", "jour": "Ven. 13/11", "duree": "4 h", "type": "TD 01",
    "titre": "Découvrir le projet : quoi modéliser, et où ?",
    "prob": "Que faut-il ajouter à la maquette de l'architecte, et où ?",
    "eval": "Formative",
@@ -196,6 +198,7 @@ SEANCES = [
       + "{M_ERP}"),
      ("45 min", "B · Ce que contient la maquette",
       "<p>Ouvrez la maquette clos-couvert dans Revit. Parcourez le plan du RDC, une coupe et la vue 3D. Pour chaque élément, indiquez s'il est modélisé.</p>"
+      '<figure class="fig"><img src="../assets/img/mdqb-3d-clos-couvert.png" alt="Vue 3D Revit de la maquette clos-couvert" loading="lazy"><figcaption>La maquette fournie : vue 3D du clos-couvert</figcaption></figure>'
       "{MATRICE}"),
      ("60 min", "C · Croquis à main levée des niveaux",
       "<p>Sur une feuille A3, au crayon, sans règle graduée :</p>"
@@ -220,7 +223,7 @@ SEANCES = [
              "Hauteurs cotées sur la coupe", "Code couleur par lot et légende", "Un type par article du CCTP, épaisseurs calculées",
              "Fichiers nommés et déposés dans 03_Livrables/S1"]},
 
-  {"n": 2, "date": "2026-11-20", "jour": "Ven. 20/11", "duree": "3 h", "type": "TP 01",
+  {"n": 2, "img": "mdqb-3d-clos-couvert.png", "date": "2026-11-20", "jour": "Ven. 20/11", "duree": "3 h", "type": "TP 01",
    "titre": "Préparer la maquette : fond de plan et types de parois",
    "prob": "Comment préparer une maquette pour que le second œuvre s'y modélise juste du premier coup ?",
    "eval": "Formative",
@@ -248,7 +251,7 @@ SEANCES = [
    "check": ["Fichier enregistré au bon nom", "DWG lié, calé et épinglé", "Un type par ligne du tableau",
              "Épaisseurs conformes", "Paramètre Lot CCTP renseigné"]},
 
-  {"n": 3, "date": "2026-11-27", "jour": "Ven. 27/11", "duree": "4 h", "type": "TP 02",
+  {"n": 3, "img": "mdqb-3d-clos-couvert.png", "date": "2026-11-27", "jour": "Ven. 27/11", "duree": "4 h", "type": "TP 02",
    "titre": "Cloisonnement et menuiseries intérieures",
    "prob": "Quelle cloison et quelle porte pour chaque local ?",
    "eval": "Formative",
@@ -271,7 +274,7 @@ SEANCES = [
    "check": ["Tous les locaux fermés", "Types CF placés aux bons locaux", "Hauteurs conformes au CCTP",
              "Portes et châssis insérés", "Passages PMR vérifiés"]},
 
-  {"n": 4, "date": "2026-12-11", "jour": "Ven. 11/12", "duree": "4 h", "type": "TP 03",
+  {"n": 4, "img": "revit-nomenclature.png", "date": "2026-12-11", "jour": "Ven. 11/12", "duree": "4 h", "type": "TP 03",
    "titre": "Sols, faux plafonds, pièces et surfaces",
    "prob": "La maquette donne-t-elle les mêmes surfaces que le plan de l'architecte ?",
    "eval": "Formative",
@@ -288,13 +291,14 @@ SEANCES = [
           "Éditez la nomenclature des pièces.",
           "Comparez avec les surfaces du plan architecte et justifiez chaque écart supérieur à 0,5 m²."])),
      ("60 min", "C · Nomenclature des finitions",
-      ul(["Créez une nomenclature par pièce : sol, murs, plafond, HSFP.", "Exportez-la vers Excel."])),
+      ul(["Créez une nomenclature par pièce : sol, murs, plafond, HSFP.", "Exportez-la vers Excel."])
+      + '<figure class="fig"><img src="../assets/img/revit-nomenclature.png" alt="Exemple de nomenclature Revit des portes" loading="lazy"><figcaption>Exemple : nomenclature des portes regroupée par type</figcaption></figure>'),
    ],
    "livrables": ["Maquette indice C", "Nomenclatures des pièces et des finitions"],
    "check": ["Sols et faux plafonds dans tous les locaux", "HSFP conformes", "Pièces nommées avec surface",
              "Écarts de surface justifiés", "Nomenclature exportée"]},
 
-  {"n": 5, "date": "2026-12-18", "jour": "Ven. 18/12", "duree": "3 h", "type": "Évaluation",
+  {"n": 5, "img": "mdqb-perspective.jpg", "date": "2026-12-18", "jour": "Ven. 18/12", "duree": "3 h", "type": "Évaluation",
    "titre": "Rendu du dossier PRO",
    "prob": "Le dossier est-il prêt à être transmis aux entreprises ?",
    "eval": "Sommative",
@@ -410,44 +414,61 @@ def cartouche_mdqb():
 # ---------------------------------------------------------------- accueil classe
 def page_classe():
     cards = ""
-    for p in PROJETS:
+    for i, p in enumerate(PROJETS, 1):
         on = p["statut"] == "En cours"
+        dates = " ".join(s["date"] for s in SEANCES) if p["slug"] == "mdqb" else ""
+        prog = (f'<div class="progress" data-dates="{dates}"><span class="progress-bar"></span>'
+                f'<span class="progress-label mono">0 / {p["nb"]} séances</span></div>') if p["nb"] else '<div class="progress is-off"><span class="progress-label">Démarrage après Noël</span></div>'
         cards += f'''<a class="projet-card{" is-on" if on else ""}" href="{p["slug"]}/index.html">
-  <span class="projet-top"><span class="mono">{e(p["code"])}</span><span class="statut{" is-on" if on else ""}">{e(p["statut"])}</span></span>
-  <span class="pole-name">{e(p["titre"])}</span>
-  <span class="pole-role">{e(p["resume"])}</span>
-  <dl class="kv"><div><dt>Période</dt><dd>{e(p["periode"])}</dd></div><div><dt>Unités</dt><dd>{e(p["unite"])}</dd></div></dl>
-  <span class="pole-go">Ouvrir le projet</span>
+  <span class="projet-img"><img src="{p["image"]}" alt="{e(p["alt"])}" loading="lazy"><span class="statut{" is-on" if on else ""}">{e(p["statut"])}</span></span>
+  <span class="projet-body">
+    <span class="projet-num mono">PROJET {i:02d} · {e(p["code"])}</span>
+    <span class="projet-title">{e(p["titre"])}</span>
+    <span class="projet-resume">{e(p["resume"])}</span>
+    <span class="projet-meta"><span><b>Période</b>{e(p["periode"])}</span><span><b>Unités</b>{e(p["unite"])}</span></span>
+    {prog}
+    <span class="btn projet-cta">Ouvrir le projet →</span>
+  </span>
 </a>'''
     agenda = "".join(
-        f'<li data-date="{s["date"]}"><a href="mdqb/s{s["n"]}.html"><span class="mono">{e(s["jour"])}</span>'
-        f'<span>MDQB · S{s["n"]} — {e(s["titre"])}</span><span class="badge-next">Prochaine</span></a></li>' for s in SEANCES)
+        f'<li data-date="{s["date"]}"><a href="mdqb/s{s["n"]}.html"><span class="ag-num mono">S{s["n"]}</span><span class="ag-date mono">{e(s["jour"])} · {e(s["duree"])}</span>'
+        f'<span class="ag-title">{e(s["titre"])}<small>MDQB · {e(s["type"])}</small></span><span class="badge-next">Prochaine</span></a></li>' for s in SEANCES)
     body = f'''
-<section class="hero wrap">
-  <p class="eyebrow">Site de la classe · 2026-2027</p>
-  <h1>{e(CLASSE["titre"])}</h1>
-  <p class="lead">Toutes les consignes, séances et ressources de la classe sont ici. Les fichiers lourds (plans, CCTP, maquettes) sont sur le Drive, accessibles depuis chaque séance.</p>
+<section class="hero-band">
+  <div class="wrap hero-split">
+    <div class="hero-text">
+      <p class="eyebrow">Site de la classe · 2026-2027</p>
+      <h1>{e(CLASSE["titre"])}</h1>
+      <p class="hero-sub">{e(CLASSE["sous_titre"])}</p>
+      <p class="lead">Consignes, séances, fiches à remplir et ressources : tout le travail de la classe est ici. Les fichiers lourds (plans, CCTP, maquettes) sont sur le Drive, accessibles depuis chaque séance.</p>
+      <div class="actions"><a class="btn" href="mdqb/index.html">Projet en cours : MDQB</a><a class="btn btn-ghost" href="#agenda">Voir l'agenda</a></div>
+    </div>
+    <figure class="planche">
+      <img src="assets/img/mdqb-photo.jpg" alt="La maison de quartier Bagatelle, Toulouse">
+      <figcaption><span class="mono">PL-00</span><span>Maison de quartier Bagatelle · Toulouse</span></figcaption>
+    </figure>
+  </div>
 </section>
 <section class="wrap section">
-  <h2>Projets</h2>
-  <div class="poles">{cards}</div>
+  <div class="section-head"><span class="section-num mono">01</span><h2>Projets</h2></div>
+  <div class="projets">{cards}</div>
 </section>
-<section class="wrap section">
-  <h2>Agenda U22</h2>
+<section class="wrap section" id="agenda">
+  <div class="section-head"><span class="section-num mono">02</span><h2>Agenda U22</h2></div>
   <p class="section-lead">La prochaine séance est signalée, les séances passées sont atténuées.</p>
   <ol class="agenda">{agenda}</ol>
 </section>
 <section class="wrap section two-col">
-  <div>
-    <h2>Règles de travail</h2>
+  <div class="note">
+    <div class="section-head"><span class="section-num mono">03</span><h2>Règles de travail</h2></div>
     {ul(["Un dossier par projet, organisé comme indiqué sur la page du projet.",
-         "Vos réponses saisies dans les pages restent sur le poste : <b>exportez ou imprimez avant de partir</b>.",
+         "Vos réponses saisies dans les pages restent sur le poste : <b>imprimez en PDF ou téléchargez avant de partir</b>.",
          "Les livrables se déposent sur le Drive, au nom convenu, à la fin de chaque séance."])}
   </div>
-  <div>
-    <h2>Épreuve E22</h2>
+  <div class="note">
+    <div class="section-head"><span class="section-num mono">04</span><h2>Épreuve E22</h2></div>
     {ul(["Production de documents graphiques · 6 h sur poste · coefficient 3.",
-         "Compétences évaluées : C2.3 et C3.4.",
+         "Compétences évaluées : <b>C2.3</b> et <b>C3.4</b>.",
          "Toujours demandé : maquette .ifc + format natif, plans mis en page, détail à main levée."])}
   </div>
 </section>'''
@@ -458,10 +479,11 @@ def page_classe():
 def page_mdqb():
     cards = ""
     for s in SEANCES:
-        cards += f'''<a class="seance-card" href="s{s["n"]}.html" data-date="{s["date"]}">
-  <span class="seance-date"><span class="mono">{e(s["jour"])}</span><span>{e(s["duree"])}</span></span>
-  <span class="seance-card-title"><span class="seance-num mono">S{s["n"]} · {e(s["type"])}</span>{e(s["titre"])}</span>
-  <span class="eval-tag{" is-som" if s["eval"] == "Sommative" else ""}">{e(s["eval"])}</span>
+        cards += f'''<a class="tl-item" href="s{s["n"]}.html" data-date="{s["date"]}">
+  <span class="tl-num mono">S{s["n"]}</span>
+  <span class="tl-date mono">{e(s["jour"])} · {e(s["duree"])}</span>
+  <span class="tl-title">{e(s["titre"])}</span>
+  <span class="tl-foot"><span class="mono small">{e(s["type"])}</span><span class="eval-tag{" is-som" if s["eval"] == "Sommative" else ""}">{e(s["eval"])}</span></span>
   <span class="badge-next">Prochaine séance</span>
 </a>'''
     comps = "".join(
@@ -472,34 +494,55 @@ def page_mdqb():
         ("mdqb_dossier", "Dossier Drive du projet"), ("mdqb_plans", "Plans PDF"), ("mdqb_dwg", "Fonds de plan DWG"),
         ("mdqb_cctp", "CCTP lots 03, 06, 07, 08"), ("mdqb_maquette", "Maquette clos-couvert"), ("mdqb_depot", "Dépôt des livrables")])
     body = f'''
-<section class="hero wrap hero-u22">
-  <p class="eyebrow">Projet 1 · U22 Production BIM · 5 séances, 18 h</p>
-  <h1>Maison de quartier Bagatelle</h1>
-  <p class="lead">{e(MDQB["situation"])}</p>
-  <p class="lead"><b>Mission :</b> {e(MDQB["mission"])}</p>
-  <dl class="facts">
-    <div><dt>Maître d'ouvrage</dt><dd>{e(MDQB["moa"])}</dd></div>
-    <div><dt>Bâtiment</dt><dd>{e(MDQB["type"])}</dd></div>
-    <div><dt>Phase</dt><dd>{e(MDQB["phase"])}</dd></div>
-    <div><dt>Rendu</dt><dd>{e(MDQB["rendu"])}</dd></div>
-  </dl>
-  <p class="problematique">« {e(MDQB["problematique"])} »</p>
-</section>
-<section class="wrap section pole-u22">
-  <h2>Séances</h2>
-  <div class="seance-cards">{cards}</div>
+<section class="hero-band">
+  <div class="wrap hero-split">
+    <div class="hero-text">
+      <p class="eyebrow">Projet 01 · U22 Production BIM · 5 séances · 18 h</p>
+      <h1>Maison de quartier Bagatelle</h1>
+      <p class="lead">{e(MDQB["situation"])}</p>
+      <p class="lead"><b>Votre mission :</b> {e(MDQB["mission"])}</p>
+    </div>
+    <figure class="planche">
+      <img src="../assets/img/mdqb-perspective.jpg" alt="Perspective du projet de maison de quartier Bagatelle">
+      <figcaption><span class="mono">PL-01</span><span>Perspective du projet</span></figcaption>
+    </figure>
+  </div>
+  <div class="wrap">
+    <dl class="titleblock">
+      <div><dt>Maître d'ouvrage</dt><dd>{e(MDQB["moa"])}</dd></div>
+      <div><dt>Bâtiment</dt><dd>{e(MDQB["type"])}</dd></div>
+      <div><dt>Phase</dt><dd>{e(MDQB["phase"])}</dd></div>
+      <div><dt>Rendu</dt><dd>{e(MDQB["rendu"])}</dd></div>
+    </dl>
+    <p class="problematique">« {e(MDQB["problematique"])} »</p>
+  </div>
 </section>
 <section class="wrap section">
-  <h2>Compétences évaluées</h2>
+  <div class="section-head"><span class="section-num mono">01</span><h2>Les séances</h2></div>
+  <div class="timeline">{cards}</div>
+</section>
+<section class="wrap section two-col">
+  <figure class="planche small-planche">
+    <img src="../assets/img/mdqb-3d-clos-couvert.png" alt="Vue 3D de la maquette clos-couvert fournie">
+    <figcaption><span class="mono">PL-02</span><span>Ce que vous recevez : la maquette clos-couvert</span></figcaption>
+  </figure>
+  <div class="note">
+    <div class="section-head"><span class="section-num mono">02</span><h2>Ce que vous livrez</h2></div>
+    {ul(["Maquette complétée du second œuvre (.rvt + .ifc)", "Plan plâtrerie n°5 : cloisonnement coté et légendé",
+         "Plan plafond n°6 : types et hauteurs de faux plafonds", "Nomenclatures des pièces et des finitions", "Détail à main levée au 1/5"], "deliverables")}
+  </div>
+</section>
+<section class="wrap section">
+  <div class="section-head"><span class="section-num mono">03</span><h2>Compétences évaluées</h2></div>
   <div class="comps">{comps}</div>
 </section>
 <section class="wrap section two-col">
-  <div>
-    <h2>Ressources (Drive)</h2>
+  <div class="note">
+    <div class="section-head"><span class="section-num mono">04</span><h2>Ressources (Drive)</h2></div>
     <ul class="res-list">{res}</ul>
   </div>
-  <div>
-    <h2>Nommage et dossier</h2>
+  <div class="note">
+    <div class="section-head"><span class="section-num mono">05</span><h2>Nommage et dossier</h2></div>
     <dl class="kv kv-block">{nom}</dl>
     <pre class="tree mono">{e(ARBO)}</pre>
   </div>
@@ -532,11 +575,19 @@ def page_seance(s):
     prev_link = f'<a class="btn btn-ghost" href="s{s["n"]-1}.html">← S{s["n"]-1}</a>' if s["n"] > 1 else '<a class="btn btn-ghost" href="index.html">← Projet</a>'
     next_link = f'<a class="btn" href="s{s["n"]+1}.html">S{s["n"]+1} →</a>' if s["n"] < len(SEANCES) else ""
     body = f'''
-<section class="hero wrap hero-u22" data-date="{s["date"]}">
-  <p class="eyebrow">MDQB · Séance {s["n"]} · {e(s["type"])} · {e(s["jour"])} · {e(s["duree"])} · {e(s["eval"])}</p>
-  <h1>{e(s["titre"])}</h1>
-  <p class="problematique">« {e(s["prob"])} »</p>
-  <p class="lead">{e(s["situation"])}</p>
+<section class="hero-band seance-hero" data-date="{s["date"]}">
+  <div class="wrap hero-split">
+    <div class="hero-text">
+      <p class="eyebrow">MDQB · {e(s["type"])} · {e(s["jour"])} · {e(s["duree"])} · {e(s["eval"])}</p>
+      <h1><span class="big-num mono">S{s["n"]}</span>{e(s["titre"])}</h1>
+      <p class="problematique">« {e(s["prob"])} »</p>
+      <p class="lead">{e(s["situation"])}</p>
+    </div>
+    <figure class="planche">
+      <img src="../assets/img/{s["img"]}" alt="Illustration de la séance {s["n"]}">
+      <figcaption><span class="mono">S{s["n"]}</span><span>{e(s["titre"])}</span></figcaption>
+    </figure>
+  </div>
 </section>
 <section class="wrap section seance-layout">
   <div class="seance-main">
