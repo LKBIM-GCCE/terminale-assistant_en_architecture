@@ -442,3 +442,14 @@ body {
 @media print { body { background: #fff; } .hero-band .planche { display: none; } .hero-split { grid-template-columns: 1fr; } }
 .projet-img img[src*="villa-permis"] { object-position: center 75%; }
 .tl-item .badge-next { position: static; justify-self: start; order: -1; }
+
+/* Liste des locaux (S1) et impression des saisies */
+.sous-bloc { display: grid; gap: 0.5rem; margin-top: 0.4rem; }
+table.editable.compact { min-width: 0; max-width: 34rem; }
+textarea { overflow: hidden; min-height: 4.5rem; }
+@media print {
+  .del-row { display: none; }
+  table.editable { min-width: 0 !important; }
+  table.editable tr { break-inside: avoid; }
+  textarea, input[type="text"] { border-color: #999; background: #fff; }
+}

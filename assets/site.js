@@ -25,12 +25,20 @@
     bar.querySelector('.progress-label').textContent = done + ' / ' + ds.length + ' séances';
   });
 
+  // Les zones de texte s'agrandissent avec leur contenu (écran et impression)
+  function grow(el) { if (el.tagName !== 'TEXTAREA') return; el.style.height = 'auto'; el.style.height = (el.scrollHeight + 4) + 'px'; }
+  window.addEventListener('beforeprint', function () { document.querySelectorAll('textarea').forEach(grow); });
+
   // Champs texte, zones de texte, cases et boutons radio
   document.querySelectorAll('input[data-store], textarea[data-store]').forEach(function (el) {
     var k = el.getAttribute('data-store'), v = store.get(k);
     if (el.type === 'checkbox') { el.checked = v === '1'; el.addEventListener('change', function () { store.set(k, el.checked ? '1' : '0'); }); }
     else if (el.type === 'radio') { el.checked = v === el.value; el.addEventListener('change', function () { if (el.checked) store.set(k, el.value); }); }
-    else { if (v !== null) el.value = v; el.addEventListener('input', function () { store.set(k, el.value); }); }
+    else {
+      if (v !== null) el.value = v;
+      el.addEventListener('input', function () { store.set(k, el.value); grow(el); });
+      grow(el);
+    }
   });
 
   // Tableau éditable
@@ -54,7 +62,7 @@
   function save(t) { store.set(t.getAttribute('data-store'), JSON.stringify(rows(t))); }
   document.querySelectorAll('table.editable').forEach(function (t) {
     var data = null; try { data = JSON.parse(store.get(t.getAttribute('data-store')) || 'null'); } catch (e) {}
-    if (data && data.length) data.forEach(function (r) { addRow(t, r); }); else { for (var i = 0; i < 5; i++) addRow(t); }
+    if (data && data.length) data.forEach(function (r) { addRow(t, r); }); else { var n = parseInt(t.getAttribute('data-rows') || '5', 10); for (var i = 0; i < n; i++) addRow(t); }
   });
 
   // Boutons

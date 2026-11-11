@@ -127,7 +127,6 @@ IDENTITE = [
     ("hsp", "Hauteur sous plafond brute"),
     ("structure", "Structure porteuse (matériaux)"),
     ("toiture", "Type de toiture"),
-    ("locaux", "Liste des locaux"),
     ("lots", "Lots du marché (numéro et intitulé)"),
     ("phase", "Phase des CCTP fournis et date d'indice"),
 ]
@@ -135,11 +134,15 @@ IDENTITE = [
 def form_identite():
     rows = ""
     for k, lab in IDENTITE:
-        tag = "textarea" if k in ("locaux", "lots") else "input"
+        tag = "textarea" if k == "lots" else "input"
         field = (f'<textarea id="id-{k}" data-store="s1-id-{k}" rows="3"></textarea>' if tag == "textarea"
                  else f'<input id="id-{k}" type="text" data-store="s1-id-{k}">')
         rows += f'<div class="field"><label for="id-{k}">{e(lab)}</label>{field}</div>'
-    return f'<div class="form-grid">{rows}</div>'
+    locaux = '''<div class="sous-bloc"><p class="label">Liste des locaux (nom et surface relevés sur le plan RDC)</p>
+<div class="table-scroll"><table class="data editable compact" id="locaux" data-store="s1-locaux" data-cols="2" data-rows="6">
+<thead><tr><th scope="col">Local</th><th scope="col">Surface (m²)</th><th scope="col"><span class="sr">Supprimer</span></th></tr></thead><tbody></tbody></table></div>
+<div class="actions"><button type="button" class="btn" data-action="add-row" data-target="locaux">+ Ajouter un local</button></div></div>'''
+    return f'<div class="form-grid">{rows}</div>' + locaux
 
 MAQUETTE_ELEMENTS = [
     ("Poteaux et poutres béton", "01 Gros œuvre"),
