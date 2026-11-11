@@ -220,3 +220,114 @@ tr.is-now th::after { content: "En cours"; display: block; font-size: 0.7rem; fo
   .cartouche td { border-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* ===== Site de la classe : composants ajoutés (accueil, MDQB) ===== */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.small { font-size: 0.82rem; }
+.c { text-align: center !important; }
+
+/* Cartes projet */
+.projet-card { --c: var(--line-strong); display: grid; gap: 0.5rem; align-content: start; text-decoration: none;
+  background: var(--sheet); border: 1px solid var(--line); border-top: 6px solid var(--c); padding: 1.1rem 1.2rem 1.2rem; }
+.projet-card.is-on { --c: var(--u22); }
+.projet-card:hover { background: var(--u22-tint); }
+.projet-top { display: flex; justify-content: space-between; align-items: center; color: var(--ink-soft); font-size: 0.85rem; }
+.statut { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; border: 1px solid currentColor; padding: 0.1rem 0.45rem; }
+.statut.is-on { background: var(--u22); color: var(--sheet); border-color: var(--u22); }
+.projet-card .pole-go { color: var(--c); }
+
+/* Agenda */
+.agenda { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+.agenda a { --c: var(--u22); display: grid; grid-template-columns: 7rem 1fr auto; gap: 1rem; align-items: center;
+  text-decoration: none; background: var(--sheet); border: 1px solid var(--line); border-left: 5px solid var(--c); padding: 0.6rem 1rem; }
+.agenda a:hover { background: var(--u22-tint); }
+.agenda li.is-past { opacity: 0.6; }
+.agenda li.is-next a { box-shadow: 0 0 0 2px var(--c); }
+.agenda li.is-next .badge-next, .seance-card.is-next .badge-next { display: inline-block; }
+
+/* Cartes séance MDQB */
+.seance-cards { display: grid; gap: 0.6rem; }
+.seance-card { --c: var(--u22); display: grid; grid-template-columns: 7rem 1fr auto auto; gap: 0.5rem 1rem; align-items: center;
+  text-decoration: none; background: var(--sheet); border: 1px solid var(--line); border-left: 5px solid var(--c); padding: 0.8rem 1rem; }
+.seance-card:hover { background: var(--u22-tint); }
+.seance-card.is-past { opacity: 0.62; }
+.seance-card.is-next { box-shadow: 0 0 0 2px var(--c); }
+.seance-card-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; line-height: 1.15; display: grid; }
+.seance-card .seance-num { color: var(--u22); font-family: var(--font-mono); font-size: 0.78rem; }
+.eval-tag { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); }
+.eval-tag.is-som { color: var(--sheet); background: var(--ink); padding: 0.15rem 0.5rem; }
+.badge-next { --c: var(--u22); }
+
+.problematique { font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; font-style: italic;
+  border-left: 4px solid var(--u22); padding-left: 0.9rem; max-width: 60ch; }
+
+/* Page séance */
+.seance-layout { grid-template-columns: minmax(0, 1fr) 19rem; gap: 2rem; align-items: start; }
+.seance-main { display: grid; gap: 1rem; min-width: 0; }
+.seance-aside { display: grid; gap: 0.75rem; position: sticky; top: 1rem; }
+.box { background: var(--sheet); border: 1px solid var(--line); padding: 0.9rem 1rem; display: grid; gap: 0.5rem; }
+.parties { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; counter-reset: p; }
+.partie { background: var(--sheet); border: 1px solid var(--line); border-left: 5px solid var(--u22); }
+.partie-head { display: flex; gap: 1rem; align-items: baseline; padding: 0.8rem 1.1rem; border-bottom: 1px solid var(--line); }
+.partie-duree { font-size: 0.82rem; color: var(--u22); font-weight: 500; min-width: 4.5rem; }
+.partie-head h3 { font-size: 1.4rem; }
+.partie-body { padding: 0.9rem 1.1rem 1.1rem; display: grid; gap: 0.8rem; min-width: 0; }
+
+/* Ressources */
+.res-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+.res-link { display: inline-block; font-weight: 500; text-decoration: none; border-bottom: 2px solid var(--u22); }
+.res-link::after { content: " ↗"; color: var(--ink-soft); }
+.res-link.is-missing { border-bottom: 2px dashed var(--line-strong); color: var(--ink-soft); }
+.res-link.is-missing::after { content: " · lien à venir"; font-size: 0.8rem; }
+
+/* Méthode */
+.methode { background: var(--u22-tint); border: 1px solid var(--line); }
+.methode summary { cursor: pointer; padding: 0.55rem 0.9rem; font-weight: 600; color: var(--u22); }
+.methode > div { padding: 0 0.9rem 0.8rem; display: grid; gap: 0.5rem; }
+
+/* Formulaires */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 0.7rem 1rem; }
+.field { display: grid; gap: 0.25rem; }
+.field label { font-size: 0.85rem; font-weight: 600; }
+input[type="text"], textarea, table.editable td[contenteditable] {
+  font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line-strong); padding: 0.4rem 0.5rem; width: 100%; }
+textarea { resize: vertical; }
+input:focus, textarea:focus, td[contenteditable]:focus { outline: 2px solid var(--u22); outline-offset: 0; }
+.matrice td input[type="text"] { min-width: 10rem; }
+.matrice input[type="radio"] { width: 1.1rem; height: 1.1rem; accent-color: var(--u22); }
+table.editable { min-width: 60rem; }
+table.editable td { min-width: 6rem; }
+table.editable td[contenteditable] { display: table-cell; width: auto; border: 0; border-bottom: 1px solid var(--line); }
+table.editable tr.exemple td { color: var(--ink-soft); font-style: italic; }
+.del-row { background: none; border: 0; color: var(--ink-soft); cursor: pointer; font-size: 1.1rem; }
+
+/* Boutons */
+.actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.actions-col { display: grid; gap: 0.5rem; }
+.btn { font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; text-align: center;
+  background: var(--u22); color: var(--sheet); border: 1px solid var(--u22); padding: 0.5rem 0.9rem; }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.pager { display: flex; justify-content: space-between; padding-top: 0; }
+
+/* Check-list */
+.todo { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+.todo label { display: flex; gap: 0.5rem; align-items: flex-start; cursor: pointer; }
+.todo input { margin-top: 0.3rem; accent-color: var(--u22); }
+.todo input:checked + span { text-decoration: line-through; color: var(--ink-soft); }
+
+/* Légende des lots */
+.legende-lots { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.lot { font-size: 0.85rem; padding: 0.2rem 0.6rem; border-left: 6px solid; background: var(--sheet); border-top: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.l07 { border-left-color: #c0392b; } .l07fp { border-left-color: #2471a3; } .l03 { border-left-color: #2f7a55; } .l06 { border-left-color: #8b5a2b; }
+tr.total th, tr.total td { border-top: 2px solid var(--ink); font-weight: 600; }
+
+@media (max-width: 860px) {
+  .seance-layout { grid-template-columns: 1fr; }
+  .seance-aside { position: static; }
+  .seance-card, .agenda a { grid-template-columns: 1fr; }
+}
+@media print {
+  .site-header, .seance-aside, .pager, .actions, .site-footer, .methode { display: none !important; }
+  body { background: #fff; }
+  .partie, .table-scroll { break-inside: avoid; border-color: #999; }
+}
