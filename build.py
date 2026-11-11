@@ -11,7 +11,7 @@ Génère :
 Pour modifier un contenu : changer les données ci-dessous, puis relancer le script.
 Les fichiers lourds (plans, CCTP, maquettes) restent sur le Drive : coller les liens dans DRIVE.
 """
-import os, html, importlib.util
+import os, html, importlib.util, hashlib
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 e = html.escape
@@ -355,6 +355,12 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">\n')
 
+def asset_v():
+    h = hashlib.md5()
+    for f in ("assets/style.css", "assets/site.js"):
+        h.update(open(os.path.join(ROOT, f), "rb").read())
+    return h.hexdigest()[:8]
+
 def doc(title, body, depth, nav="", brand=("Terminale TEB-AA", "Bac Pro TEB · Assistant en architecture"), footer=""):
     up = "../" * depth
     return f'''<!doctype html>
@@ -363,7 +369,7 @@ def doc(title, body, depth, nav="", brand=("Terminale TEB-AA", "Bac Pro TEB · A
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{e(title)}</title>
-{FONTS}<link rel="stylesheet" href="{up}assets/style.css">
+{FONTS}<link rel="stylesheet" href="{up}assets/style.css?v={asset_v()}">
 </head>
 <body>
 <header class="site-header">
@@ -379,7 +385,7 @@ def doc(title, body, depth, nav="", brand=("Terminale TEB-AA", "Bac Pro TEB · A
 {body}
 </main>
 {footer}
-<script src="{up}assets/site.js"></script>
+<script src="{up}assets/site.js?v={asset_v()}"></script>
 </body>
 </html>
 '''
