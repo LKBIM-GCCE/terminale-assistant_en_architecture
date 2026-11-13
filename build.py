@@ -168,13 +168,13 @@ def matrice_maquette():
                  f'<td><input type="text" data-store="s1-mq-rq-{i}" aria-label="Remarque {e(el)}"></td></tr>')
     return f'<div class="table-scroll"><table class="data matrice"><thead>{head}</thead><tbody>{rows}</tbody></table></div>'
 
-TYPES_COLS = ["Code type Revit", "Lot", "Art. CCTP", "Composition (de l'extérieur vers l'intérieur)", "Épaisseur (mm)", "Hauteur", "Localisation"]
-TYPES_EXEMPLE = ["DBL-BA13-COLLE", "07", "2.1", "Plots de MAP + 1 plaque BA13", "≈ 13 + plots", "Faux plafond + 10 cm", "Mur extérieur et agglo salle polyvalente 4, poteaux BA…"]
+TYPES_COLS = ["Code type Revit", "Lot", "Art. CCTP", "Composition (de l'extérieur vers l'intérieur)", "Épaisseur (mm)"]
+TYPES_EXEMPLE = ["DBL-BA13-COLLE", "07", "2.1", "Plots de MAP + 1 plaque BA13", "≈ 13 + plots"]
 
 def table_types():
     th = "".join(f'<th scope="col">{e(c)}</th>' for c in TYPES_COLS) + '<th scope="col"><span class="sr">Supprimer</span></th>'
     ex = "".join(f"<td>{e(c)}</td>" for c in TYPES_EXEMPLE) + "<td></td>"
-    return f'''<div class="table-scroll"><table class="data editable" id="types" data-store="s1-types" data-cols="{len(TYPES_COLS)}">
+    return f'''<div class="table-fit"><table class="data editable fit" id="types" data-store="s1-types" data-cols="{len(TYPES_COLS)}">
 <thead><tr>{th}</tr></thead>
 <tbody><tr class="exemple">{ex}</tr></tbody></table></div>
 <div class="actions">
@@ -213,7 +213,7 @@ SEANCES = [
         '<span class="lot l03">Vert · sols carrelés (lot 03)</span><span class="lot l06">Marron · portes et châssis (lot 06)</span></div>'
       + "{M_CROQUIS}"),
      ("60 min", "D · Tableau des types de second œuvre",
-      "<p>Lisez les articles ci-dessous et créez <b>un type par ligne</b>. Ce tableau sera votre cahier des charges pour modéliser en S2 à S4. La première ligne est un exemple.</p>"
+      "<p>Lisez les articles ci-dessous et créez <b>un type par ligne</b> : code, lot, article, composition et épaisseur totale. Ce tableau sera votre cahier des charges pour modéliser en S2 à S4. La première ligne est un exemple.</p>"
       + ul(["<b>Lot 07</b> : articles 2.1 à 2.7 (doublages, cloisons), 2.9 à 2.12 (faux plafonds)",
             "<b>Lot 06</b> : articles 2.1 à 2.4 (portes, châssis, placards)",
             "<b>Lot 03</b> : articles 2.2 à 2.4 (carrelages)"])

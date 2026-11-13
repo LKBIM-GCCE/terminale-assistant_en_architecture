@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../assets/style.css?v=ee8bf351">
+<link rel="stylesheet" href="../assets/style.css?v=f5ea480f">
 </head>
 <body>
 <header class="site-header">
@@ -55,9 +55,9 @@
   <div class="partie-body"><p>Sur une feuille A3, au crayon, sans règle graduée :</p><ul class="list"><li><b>Plan schématique du RDC</b> : murs, poteaux, noms des locaux.</li><li><b>Coupe schématique</b> passant par une salle polyvalente et un local à faux plafond bas : dalle, sol fini (±0,00), faux plafonds, plancher haut, toiture.</li><li><b>Cotez les hauteurs</b> : hauteur sous plafond brute, hauteurs sous faux plafond (HSFP) relevées dans le CCTP du lot 07.</li><li><b>Coloriez par lot</b> où ira chaque ouvrage, avec une légende.</li></ul><div class="legende-lots"><span class="lot l07">Rouge · cloisons et doublages (lot 07)</span><span class="lot l07fp">Bleu · faux plafonds (lot 07)</span><span class="lot l03">Vert · sols carrelés (lot 03)</span><span class="lot l06">Marron · portes et châssis (lot 06)</span></div><details class="methode"><summary>Méthode · Réussir un croquis coté</summary><div><ul class="list"><li>Commencez par les axes et les poteaux, puis les murs.</li><li>Respectez les proportions : comptez les trames.</li><li>Traits forts pour les éléments coupés, traits fins pour les vues.</li><li>Cotez en mètres avec deux décimales (2,50).</li><li>Ajoutez un titre, votre nom, la date.</li></ul></div></details></div>
 </li><li class="partie">
   <div class="partie-head"><span class="partie-duree mono">60 min</span><h3>D · Tableau des types de second œuvre</h3></div>
-  <div class="partie-body"><p>Lisez les articles ci-dessous et créez <b>un type par ligne</b>. Ce tableau sera votre cahier des charges pour modéliser en S2 à S4. La première ligne est un exemple.</p><ul class="list"><li><b>Lot 07</b> : articles 2.1 à 2.7 (doublages, cloisons), 2.9 à 2.12 (faux plafonds)</li><li><b>Lot 06</b> : articles 2.1 à 2.4 (portes, châssis, placards)</li><li><b>Lot 03</b> : articles 2.2 à 2.4 (carrelages)</li></ul><p>Codes à utiliser : <span class="mono">DBL-</span> doublage, <span class="mono">CLO-</span> cloison, <span class="mono">FP-</span> faux plafond, <span class="mono">SOL-</span> sol, <span class="mono">POR-</span> porte.</p><div class="table-scroll"><table class="data editable" id="types" data-store="s1-types" data-cols="7">
-<thead><tr><th scope="col">Code type Revit</th><th scope="col">Lot</th><th scope="col">Art. CCTP</th><th scope="col">Composition (de l&#x27;extérieur vers l&#x27;intérieur)</th><th scope="col">Épaisseur (mm)</th><th scope="col">Hauteur</th><th scope="col">Localisation</th><th scope="col"><span class="sr">Supprimer</span></th></tr></thead>
-<tbody><tr class="exemple"><td>DBL-BA13-COLLE</td><td>07</td><td>2.1</td><td>Plots de MAP + 1 plaque BA13</td><td>≈ 13 + plots</td><td>Faux plafond + 10 cm</td><td>Mur extérieur et agglo salle polyvalente 4, poteaux BA…</td><td></td></tr></tbody></table></div>
+  <div class="partie-body"><p>Lisez les articles ci-dessous et créez <b>un type par ligne</b> : code, lot, article, composition et épaisseur totale. Ce tableau sera votre cahier des charges pour modéliser en S2 à S4. La première ligne est un exemple.</p><ul class="list"><li><b>Lot 07</b> : articles 2.1 à 2.7 (doublages, cloisons), 2.9 à 2.12 (faux plafonds)</li><li><b>Lot 06</b> : articles 2.1 à 2.4 (portes, châssis, placards)</li><li><b>Lot 03</b> : articles 2.2 à 2.4 (carrelages)</li></ul><p>Codes à utiliser : <span class="mono">DBL-</span> doublage, <span class="mono">CLO-</span> cloison, <span class="mono">FP-</span> faux plafond, <span class="mono">SOL-</span> sol, <span class="mono">POR-</span> porte.</p><div class="table-fit"><table class="data editable fit" id="types" data-store="s1-types" data-cols="5">
+<thead><tr><th scope="col">Code type Revit</th><th scope="col">Lot</th><th scope="col">Art. CCTP</th><th scope="col">Composition (de l&#x27;extérieur vers l&#x27;intérieur)</th><th scope="col">Épaisseur (mm)</th><th scope="col"><span class="sr">Supprimer</span></th></tr></thead>
+<tbody><tr class="exemple"><td>DBL-BA13-COLLE</td><td>07</td><td>2.1</td><td>Plots de MAP + 1 plaque BA13</td><td>≈ 13 + plots</td><td></td></tr></tbody></table></div>
 <div class="actions">
   <button type="button" class="btn" data-action="add-row" data-target="types">+ Ajouter une ligne</button>
   <button type="button" class="btn btn-ghost" data-action="export-csv" data-target="types" data-file="MDQB_NOM_Prenom_S1_Types.csv">Télécharger pour Excel (.csv)</button>
@@ -89,6 +89,6 @@
     </table>
   </div>
 </footer>
-<script src="../assets/site.js?v=ee8bf351"></script>
+<script src="../assets/site.js?v=f5ea480f"></script>
 </body>
 </html>

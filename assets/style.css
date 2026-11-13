@@ -453,3 +453,32 @@ textarea { overflow: hidden; min-height: 4.5rem; }
   table.editable tr { break-inside: avoid; }
   textarea, input[type="text"] { border-color: #999; background: #fff; }
 }
+
+/* Tableau des types (S1) : tient dans la largeur, retour à la ligne, imprimable */
+.table-fit { width: 100%; }
+table.editable.fit { min-width: 0; width: 100%; table-layout: fixed; }
+table.editable.fit th, table.editable.fit td { min-width: 0; white-space: normal; overflow-wrap: anywhere; word-break: break-word; vertical-align: top; }
+table.editable.fit th:nth-child(1) { width: 19%; }
+table.editable.fit th:nth-child(2) { width: 7%; }
+table.editable.fit th:nth-child(3) { width: 9%; }
+table.editable.fit th:nth-child(4) { width: 50%; }
+table.editable.fit th:nth-child(5) { width: 11%; }
+table.editable.fit th:nth-child(6) { width: 4%; }
+@media print {
+  table.editable.fit th:nth-child(6), table.editable.fit td:last-child { display: none; }
+  table.editable.fit th:nth-child(4) { width: 54%; }
+  table.editable.fit { font-size: 9.5pt; }
+}
+table.editable.fit th { overflow-wrap: normal; word-break: normal; hyphens: manual; }
+table.editable.fit th:nth-child(4) { width: 47%; }
+table.editable.fit th:nth-child(5) { width: 14%; }
+@media print {
+  /* Impression : mise en page en flux simple (évite les chevauchements entre pages) */
+  .seance-layout, .seance-main, .parties, .partie-body, .hero-split, .form-grid { display: block !important; }
+  .parties > .partie { margin-bottom: 0.5rem; box-shadow: none; }
+  .partie { break-inside: auto; }
+  .partie-head, table tr { break-inside: avoid; }
+  .table-scroll { overflow: visible; break-inside: auto; }
+  .form-grid .field { margin-bottom: 0.4rem; }
+  table.editable.fit th:nth-child(4) { width: 51%; }
+}
