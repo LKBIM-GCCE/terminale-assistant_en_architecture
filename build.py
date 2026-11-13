@@ -461,22 +461,31 @@ def page_classe():
   <p class="section-lead">La prochaine séance est signalée, les séances passées sont atténuées.</p>
   <ol class="agenda">{agenda}</ol>
 </section>
+<section class="wrap section">
+  <div class="section-head"><span class="section-num mono">03</span><h2>Autoformation</h2></div>
+  <a class="jeux-card" href="maison-des-jeux/index.html">
+    <span class="jeux-emo" aria-hidden="true">🏠</span>
+    <span class="jeux-txt"><span class="projet-title">La maison des jeux</span>
+    <span class="projet-resume">Cliquez sur une partie de la maison pour jouer : gros œuvre, plâtrerie, sols, menuiseries, incendie, accessibilité… Découvrir, s'entraîner, se défier.</span></span>
+    <span class="btn">Jouer →</span>
+  </a>
+</section>
 <section class="wrap section two-col">
   <div class="note">
-    <div class="section-head"><span class="section-num mono">03</span><h2>Règles de travail</h2></div>
+    <div class="section-head"><span class="section-num mono">04</span><h2>Règles de travail</h2></div>
     {ul(["Un dossier par projet, organisé comme indiqué sur la page du projet.",
          "Vos réponses saisies dans les pages restent sur le poste : <b>imprimez en PDF ou téléchargez avant de partir</b>.",
          "Les livrables se déposent sur le Drive, au nom convenu, à la fin de chaque séance."])}
   </div>
   <div class="note">
-    <div class="section-head"><span class="section-num mono">04</span><h2>Épreuve E22</h2></div>
+    <div class="section-head"><span class="section-num mono">05</span><h2>Épreuve E22</h2></div>
     {ul(["Production de documents graphiques · 6 h sur poste · coefficient 3.",
          "Compétences évaluées : <b>C2.3</b> et <b>C3.4</b>.",
          "Toujours demandé : maquette .ifc + format natif, plans mis en page, détail à main levée."])}
   </div>
 </section>'''
     return doc(f'{CLASSE["titre"]} – site de la classe', body, 0,
-               nav='<a href="index.html" class="nav-link is-active" aria-current="page">Accueil</a><a href="mdqb/index.html" class="nav-link">MDQB</a><a href="villa/index.html" class="nav-link">Villa</a>')
+               nav='<a href="index.html" class="nav-link is-active" aria-current="page">Accueil</a><a href="mdqb/index.html" class="nav-link">MDQB</a><a href="villa/index.html" class="nav-link">Villa</a><a href="maison-des-jeux/index.html" class="nav-link">Jeux</a>')
 
 # ---------------------------------------------------------------- accueil MDQB
 def page_mdqb():
