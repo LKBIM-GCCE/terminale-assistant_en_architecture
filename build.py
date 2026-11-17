@@ -1,3 +1,4 @@
+import re
 # -*- coding: utf-8 -*-
 """Site de la classe Terminale Bac Pro TEB-AA.
 
@@ -95,6 +96,20 @@ ARBO = """NOM_Prenom_MDQB/
 
 # Séances : chaque "partie" = (durée, titre, contenu HTML)
 # Les blocs interactifs : FORM_IDENTITE, MATRICE_MAQUETTE, TABLE_TYPES (définis plus bas)
+
+from acquis_mdqb import ACQUIS
+
+def md(t):
+    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", e(t))
+
+def bloc_acquis(n, pid):
+    def col(kind, titre):
+        items = [(i, md(t)) for i, (k, t, _) in enumerate(ACQUIS[n]) if k == kind]
+        lis = "".join(f'<li><label><input type="checkbox" data-store="{pid}-acq-{i}"> <span>{t}</span></label></li>' for i, t in items)
+        return f'<div><p class="label">{titre}</p><ul class="todo">{lis}</ul></div>'
+    return (f'<section class="acquis"><h2>À la fin de la séance, je sais…</h2>'
+            f'<p class="acquis-aide">C\'est ce qui sera vérifié. Cochez chaque ligne quand vous en êtes capable ; la fiche synthèse reprend ces points.</p>'
+            f'<div class="acquis-cols">{col("S", "Savoirs")}{col("F", "Savoir-faire")}</div></section>')
 
 def drive(key, label):
     url = DRIVE.get(key, "")
@@ -316,9 +331,9 @@ SEANCES = [
       ul(["Feuilles A3 avec cartouche complété, échelles adaptées.",
           "Exports PDF, IFC et RVT au bon nom dans <span class=\"mono\">03_Livrables/S5_Rendu</span>."])),
      ("60 min", "C · Détail à main levée",
-      "<p>Au 1/5, sur papier : jonction entre une cloison coupe-feu et le faux plafond. Désignez tous les matériaux et cotez les couches.</p>"),
+      "<p>Au 1/10, sur papier : jonction entre une cloison coupe-feu et le faux plafond. Désignez tous les matériaux et cotez les couches.</p>"),
    ],
-   "livrables": ["Plan plâtrerie n°5 et plan plafond n°6 (PDF A3)", "Maquette .rvt et .ifc", "Détail au 1/5"],
+   "livrables": ["Plan plâtrerie n°5 et plan plafond n°6 (PDF A3)", "Maquette .rvt et .ifc", "Détail au 1/10"],
    "check": ["Plans cotés et légendés", "Cartouche complet", "Exports PDF, IFC, RVT nommés", "Détail désigné et coté"],
    "grille": [
      ("C2.3", "Types de parois et de plafonds conformes au CCTP", 2),
@@ -329,7 +344,7 @@ SEANCES = [
      ("C3.4", "Plan plâtrerie n°5 coté et légendé", 2),
      ("C3.4", "Plan plafond n°6 repéré et légendé", 2),
      ("C3.4", "Mise en page, cartouche, exports nommés", 2),
-     ("C3.4", "Détail à main levée au 1/5", 2),
+     ("C3.4", "Détail à main levée au 1/10", 2),
    ]},
 ]
 
@@ -546,7 +561,7 @@ def page_mdqb():
   <div class="note">
     <div class="section-head"><span class="section-num mono">02</span><h2>Ce que vous livrez</h2></div>
     {ul(["Maquette complétée du second œuvre (.rvt + .ifc)", "Plan plâtrerie n°5 : cloisonnement coté et légendé",
-         "Plan plafond n°6 : types et hauteurs de faux plafonds", "Nomenclatures des pièces et des finitions", "Détail à main levée au 1/5"], "deliverables")}
+         "Plan plafond n°6 : types et hauteurs de faux plafonds", "Nomenclatures des pièces et des finitions", "Détail à main levée au 1/10"], "deliverables")}
   </div>
 </section>
 <section class="wrap section">
@@ -608,6 +623,7 @@ def page_seance(s):
 </section>
 <section class="wrap section seance-layout">
   <div class="seance-main">
+    {bloc_acquis(s["n"], pid)}
     <h2>Déroulé</h2>
     <ol class="parties">{parties}</ol>
   </div>

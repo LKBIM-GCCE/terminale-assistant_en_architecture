@@ -1,0 +1,36 @@
+# -*- coding: utf-8 -*-
+"""Acquis à valider par séance — séquence MDQB (source unique : site + fiches synthèse).
+Chaque acquis : (S = savoir | F = savoir-faire, texte complet, texte court pour la synthèse A3)."""
+
+ACQUIS = {
+ 1: [("S", "Je sais faire la différence entre les **pièces graphiques** (plans, coupes, façades) et les **pièces écrites** (CCTP).", "Pièces graphiques / pièces écrites"),
+     ("S", "Je sais dire **qui fait quoi** : maître d'ouvrage, maître d'œuvre, bureau d'études (BET).", "MOA, MOE, BET : qui fait quoi"),
+     ("S", "Je sais distinguer le **clos-couvert** (hors d'eau, hors d'air) du **second œuvre** (cloisonner, finir, équiper).", "Clos-couvert / second œuvre"),
+     ("F", "Je sais **naviguer dans la maquette Revit** (plan, coupe, 3D) et dire ce qui est déjà modélisé.", "Naviguer dans la maquette"),
+     ("F", "Je sais faire un **croquis à main levée** du plan et de la coupe, avec les hauteurs cotées.", "Croquis coté plan + coupe"),
+     ("F", "Je sais **traduire un article de CCTP en type** : code, composition, épaisseur totale.", "Article de CCTP → type")],
+ 2: [("S", "Je sais expliquer **pourquoi on prépare la maquette** avant de modéliser (fond de plan, niveaux, types).", "Pourquoi préparer la maquette"),
+     ("S", "Je sais lire la **structure d'un type composé** : couches, matériaux, fonction de chaque couche, épaisseur totale.", "Structure d'un type composé"),
+     ("S", "Je sais à quoi sert un **paramètre partagé** : ajouter une information utile, comme le lot du CCTP.", "Rôle d'un paramètre partagé"),
+     ("F", "Je sais **enregistrer la maquette au bon nom** et organiser mes vues.", "Enregistrer au bon nom"),
+     ("F", "Je sais **lier un DWG** : unités, calage sur deux points, épinglage.", "Lier, caler, épingler un DWG"),
+     ("F", "Je sais **dupliquer et modifier un type** de mur, de sol ou de plafond.", "Dupliquer et modifier un type")],
+ 3: [("S", "Je sais **choisir une cloison selon le local** : coupe-feu ½ h, 1 h ou 2 h, sanitaires, local technique.", "Cloison selon le local"),
+     ("S", "Je connais les **familles de portes** : coupe-feu, à âme pleine, châssis fixe.", "Familles de portes"),
+     ("S", "Je connais les **largeurs de passage** pour l'accessibilité en ERP.", "Largeurs de passage ERP"),
+     ("F", "Je sais **modéliser une cloison** avec la bonne ligne de justification (nu fini).", "Cloison justifiée au nu fini"),
+     ("F", "Je sais **insérer une porte ou un châssis** et renseigner son lot.", "Porte ou châssis + lot"),
+     ("F", "Je sais **contrôler ma maquette** en la superposant au DWG et en coupe.", "Contrôle : DWG + coupe")],
+ 4: [("S", "Je sais situer **sol fini, faux plafond, HSFP et plénum**.", "Sol fini, FP, HSFP, plénum"),
+     ("S", "Je sais ce qu'est une **pièce Revit** et pourquoi sa surface peut différer de celle du plan.", "Pièce Revit et surfaces"),
+     ("S", "Je sais à quoi sert une **nomenclature** : compter et contrôler les finitions.", "Rôle d'une nomenclature"),
+     ("F", "Je sais **modéliser les sols et les faux plafonds** par local, à la bonne hauteur.", "Sols et FP à la bonne hauteur"),
+     ("F", "Je sais **créer, nommer et étiqueter les pièces** avec leur surface.", "Pièces nommées + surface"),
+     ("F", "Je sais **créer une nomenclature des finitions** et l'exporter vers Excel.", "Nomenclature → Excel"),
+     ("F", "Je sais **justifier un écart de surface**.", "Justifier un écart de surface")],
+ 5: [("S", "Je sais ce que contiennent un **plan de plâtrerie** et un **plan de plafond** : légende, repérage, cotation.", "Plan plâtrerie / plan plafond"),
+     ("S", "Je connais les **éléments obligatoires d'une feuille** : cartouche, échelle, indice, Nord.", "Cartouche, échelle, indice, Nord"),
+     ("S", "Je sais à quoi sert chaque **format** : PDF pour lire, IFC pour échanger, RVT pour travailler.", "PDF / IFC / RVT"),
+     ("F", "Je sais **mettre en page une feuille A3** et l'exporter au bon nom.", "Feuille A3 + export nommé"),
+     ("F", "Je sais dessiner à main levée un **détail au 1/10**, avec les matériaux désignés et les couches cotées.", "Détail au 1/10 désigné et coté")],
+}
