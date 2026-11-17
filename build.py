@@ -122,7 +122,7 @@ IDENTITE = [
     ("moe", "Maître d'œuvre et bureau d'études (BET)"),
     ("adresse", "Adresse du projet"),
     ("usage", "Usage du bâtiment"),
-    ("erp", "Type et catégorie d'ERP (à justifier)"),
+    ("erp", "Type d'ERP (lettre, à justifier par l'usage)"),
     ("niveaux", "Nombre de niveaux"),
     ("hsp", "Hauteur sous plafond brute"),
     ("structure", "Structure porteuse (matériaux)"),
@@ -191,7 +191,7 @@ SEANCES = [
    "prob": "Que faut-il ajouter à la maquette de l'architecte, et où ?",
    "eval": "Formative",
    "situation": "L'architecte vous confie le dossier. Avant de toucher à la maquette, il veut savoir si vous avez compris le projet, ce qui est déjà modélisé, et ce que demandent les CCTP du second œuvre.",
-   "donne": [("mdqb_plans", "Plans PDF (RDC, coupes, façades, axonométries)"), ("mdqb_cctp", "CCTP lots 03, 06, 07, 08"),
+   "donne": [("mdqb_plans", "Plans PDF (RDC, coupes, façades, axonométries)"), ("mdqb_cctp", "CCTP"),
              ("mdqb_maquette", "Maquette clos-couvert (.rvt et .ifc)")],
    "parties": [
      ("15 min", "Lancement", "<p>Présentation du projet, de la séquence et du rendu du 18/12. Créez votre arborescence de dossiers (voir l'accueil du projet).</p>"),
@@ -259,7 +259,7 @@ SEANCES = [
    "prob": "Quelle cloison et quelle porte pour chaque local ?",
    "eval": "Formative",
    "situation": "Vous modélisez le cloisonnement. Certains locaux techniques exigent des parois coupe-feu : le bon type doit être au bon endroit.",
-   "donne": [("mdqb_plans", "Plan RDC (PDF)"), ("mdqb_cctp", "CCTP lots 06 et 07")],
+   "donne": [("mdqb_plans", "Plan RDC (PDF)"), ("mdqb_cctp", "CCTP")],
    "parties": [
      ("15 min", "Lancement", "<p>Repérage des locaux à risque et des exigences de résistance au feu.</p>"),
      ("120 min", "A · Doublages et cloisons",
@@ -282,7 +282,7 @@ SEANCES = [
    "prob": "La maquette donne-t-elle les mêmes surfaces que le plan de l'architecte ?",
    "eval": "Formative",
    "situation": "Le cloisonnement est en place. Vous ajoutez les sols et les faux plafonds, puis vous contrôlez les surfaces.",
-   "donne": [("mdqb_plans", "Plan RDC avec surfaces (PDF)"), ("mdqb_cctp", "CCTP lots 03 et 07")],
+   "donne": [("mdqb_plans", "Plan RDC avec surfaces (PDF)"), ("mdqb_cctp", "CCTP")],
    "parties": [
      ("15 min", "Lancement", "<p>Rappel : sol fini, faux plafond, hauteur sous faux plafond.</p>"),
      ("90 min", "A · Sols et faux plafonds",
@@ -334,9 +334,13 @@ SEANCES = [
 ]
 
 METHODES = {
-  "M_ERP": methode("Type et catégorie d'un ERP",
-      "<p>Le <b>type</b> (lettre) dépend de l'activité ; la <b>catégorie</b> (1 à 5) dépend de l'effectif accueilli. "
-      "Une salle polyvalente relève en général du type L. Cherchez l'effectif ou la catégorie dans le dossier, sinon formulez une hypothèse justifiée.</p>"),
+  "M_ERP": methode("Trouver le type d'un ERP",
+      "<p>Le <b>type</b> d'un ERP est une lettre qui dépend de son <b>activité</b>. On le déduit de l'usage des locaux, lu sur les plans et dans le programme :</p>"
+      + ul(["<b>L</b> : salles d'audition, de conférence, de réunion, salles polyvalentes",
+            "<b>R</b> : établissements d'enseignement, centres de loisirs sans hébergement",
+            "<b>X</b> : établissements sportifs couverts",
+            "<b>N</b> : restaurants et débits de boissons ; <b>W</b> : bureaux"])
+      + "<p>Un bâtiment peut cumuler plusieurs activités : on retient alors l'activité principale. La <b>catégorie</b> (1 à 5) dépend de l'effectif accueilli ; elle n'est pas demandée ici.</p>"),
   "M_CROQUIS": methode("Réussir un croquis coté",
       ul(["Commencez par les axes et les poteaux, puis les murs.", "Respectez les proportions : comptez les trames.",
           "Traits forts pour les éléments coupés, traits fins pour les vues.", "Cotez en mètres avec deux décimales (2,50).",
@@ -504,7 +508,8 @@ def page_mdqb():
     nom = "".join(f'<div><dt>{e(a)}</dt><dd class="mono">{e(b)}</dd></div>' for a, b in NOMMAGE)
     res = "".join(f"<li>{drive(k, l)}</li>" for k, l in [
         ("mdqb_dossier", "Dossier Drive du projet"), ("mdqb_plans", "Plans PDF"), ("mdqb_dwg", "Fonds de plan DWG"),
-        ("mdqb_cctp", "CCTP lots 03, 06, 07, 08"), ("mdqb_maquette", "Maquette clos-couvert"), ("mdqb_depot", "Dépôt des livrables")])
+        ("mdqb_cctp", "CCTP"), ("mdqb_maquette", "Maquette clos-couvert"), ("mdqb_depot", "Dépôt des livrables")])
+    res += '<li><a class="res-link" href="syntheses/LKBIM-MDQB-SEQ01-SYNTHESE-A3.pdf" target="_blank" rel="noopener">Synthèse A3 de la séquence (PDF)</a></li>'
     body = f'''
 <section class="hero-band">
   <div class="wrap hero-split">
@@ -608,6 +613,7 @@ def page_seance(s):
   </div>
   <aside class="seance-aside">
     <div class="box"><p class="label">On vous donne</p><ul class="res-list">{donne}</ul></div>
+    <div class="box box-synth"><p class="label">Fiche synthèse</p><a class="res-link" href="syntheses/LKBIM-MDQB-S0{s['n']}-FICHE_SYNTHESE.pdf" target="_blank" rel="noopener">Fiche synthèse S{s['n']} (PDF A4)</a></div>
     <div class="box"><p class="label">Livrables</p>{ul([e(l) for l in s["livrables"]])}</div>
     <div class="box"><p class="label">Avant de partir</p>{checklist(pid, [e(c) for c in s["check"]])}</div>
     <div class="box actions-col">
