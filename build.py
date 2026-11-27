@@ -126,8 +126,27 @@ def checklist(page_id, items):
         for i, t in enumerate(items))
     return f'<ul class="todo">{lis}</ul>'
 
-def methode(titre, contenu):
-    return f'<details class="methode"><summary>Méthode · {e(titre)}</summary><div>{contenu}</div></details>'
+# ---------------------------------------------------------------------
+# Mémos Revit (fichiers HTML autonomes dans memos-revit/, ajoutés au fil des besoins)
+# ---------------------------------------------------------------------
+MEMOS = [
+    {"num": "02", "fichier": "02-importer-dwg.html", "titre": "Importer un fichier DWG",
+     "sous": "Mettre un plan AutoCAD en fond de plan dans Revit", "chemin": ["Insérer", "Importer", "Importer CAO"],
+     "seances": [("MDQB S2", "mdqb/s2.html")]},
+    {"num": "03", "fichier": "03-creer-type-mur.html", "titre": "Créer un type de mur",
+     "sous": "Exemple : cloison 72/48 (plaque + isolant + plaque)", "chemin": ["Architecture", "Mur", "Modifier le type"],
+     "seances": [("MDQB S2", "mdqb/s2.html")]},
+]
+MEMO = {m["num"]: m for m in MEMOS}
+
+def lien_memo(num, depth=1):
+    m = MEMO[num]
+    return (f'<a class="memo-link" href="{"../" * depth}memos-revit/{m["fichier"]}" target="_blank" rel="noopener">'
+            f'<span class="memo-link-num mono">MÉMO {m["num"]}</span> ▶ {e(m["titre"])}</a>')
+
+def methode(titre, contenu, memo=None):
+    lien = f'<p class="memo-in">{lien_memo(memo)}</p>' if memo else ""
+    return f'<details class="methode"><summary>Méthode · {e(titre)}</summary><div>{lien}{contenu}</div></details>'
 
 # ---------------------------------------------------------------------
 # Blocs interactifs de la S1
@@ -368,10 +387,10 @@ METHODES = {
       "Si l'épaisseur annoncée ne correspond pas à la composition décrite, notez-le : c'est une incohérence à signaler.</p>"),
   "M_DWG": methode("Lier et caler un DWG",
       ul(["Insérer › Lier CAO : couleurs noir et blanc, unités mètres, positionnement manuel.", "Déplacer le lien en accrochant un point connu (axe de poteau).",
-          "Vérifier un deuxième point pour contrôler l'orientation.", "Modifier › Épingler pour éviter tout déplacement."])),
+          "Vérifier un deuxième point pour contrôler l'orientation.", "Modifier › Épingler pour éviter tout déplacement."]), memo="02"),
   "M_TYPES": methode("Créer un type de mur composé",
       ul(["Sélectionner un mur › Modifier le type › Dupliquer › nommer avec le code du tableau.", "Structure › Modifier : ajouter les couches, affecter le matériau et l'épaisseur.",
-          "Placer l'ossature en noyau, les plaques en finition.", "Contrôler l'épaisseur totale affichée."])),
+          "Placer l'ossature en noyau, les plaques en finition.", "Contrôler l'épaisseur totale affichée."]), memo="03"),
 }
 
 # =====================================================================
@@ -488,6 +507,12 @@ def page_classe():
     <span class="projet-resume">Cliquez sur une partie de la maison pour jouer : gros œuvre, plâtrerie, sols, menuiseries, incendie, accessibilité… Découvrir, s'entraîner, se défier.</span></span>
     <span class="btn">Jouer →</span>
   </a>
+  <a class="jeux-card memos-card" href="memos-revit/index.html">
+    <span class="jeux-emo" aria-hidden="true">🎬</span>
+    <span class="jeux-txt"><span class="projet-title">Les mémos Revit</span>
+    <span class="projet-resume">De courtes vidéos commentées pour retrouver un geste Revit pas à pas : importer un DWG, créer un type de mur… À ouvrir dès qu'on bloque.</span></span>
+    <span class="btn">Voir →</span>
+  </a>
 </section>
 <section class="wrap section two-col">
   <div class="note">
@@ -504,7 +529,7 @@ def page_classe():
   </div>
 </section>'''
     return doc(f'{CLASSE["titre"]} – site de la classe', body, 0,
-               nav='<a href="index.html" class="nav-link is-active" aria-current="page">Accueil</a><a href="mdqb/index.html" class="nav-link">MDQB</a><a href="villa/index.html" class="nav-link">Villa</a><a href="maison-des-jeux/index.html" class="nav-link">Jeux</a>')
+               nav='<a href="index.html" class="nav-link is-active" aria-current="page">Accueil</a><a href="mdqb/index.html" class="nav-link">MDQB</a><a href="villa/index.html" class="nav-link">Villa</a><a href="maison-des-jeux/index.html" class="nav-link">Jeux</a><a href="memos-revit/index.html" class="nav-link">Mémos Revit</a>')
 
 # ---------------------------------------------------------------- accueil MDQB
 def page_mdqb():
@@ -642,6 +667,41 @@ def page_seance(s):
 <section class="wrap section pager">{prev_link}{next_link}</section>'''
     return doc(f"MDQB S{s['n']} – {s['titre']}", body, 1, nav=nav_mdqb(f"s{s['n']}.html"), footer=cartouche_mdqb())
 
+# ---------------------------------------------------------------- mémos Revit
+def page_memos():
+    cards = ""
+    for m in sorted(MEMOS, key=lambda m: m["num"]):
+        chemin = '<span class="memo-sep">›</span>'.join(f"<span>{e(c)}</span>" for c in m["chemin"])
+        seances = " · ".join(f'<a href="../{h}">{e(t)}</a>' for t, h in m["seances"])
+        cards += f'''<article class="memo-card">
+  <span class="memo-num mono">MÉMO {m["num"]}</span>
+  <h3><a href="{m["fichier"]}">{e(m["titre"])}</a></h3>
+  <p class="memo-sous">{e(m["sous"])}</p>
+  <p class="memo-chemin">{chemin}</p>
+  <p class="memo-seances small">Utilisé en : {seances}</p>
+</article>'''
+    body = f'''<section class="wrap section">
+  <div class="section-head"><span class="section-num mono">🎬</span><h2>Mémos Revit</h2></div>
+  <p class="section-lead">Chaque mémo montre un geste Revit en vidéo, étape par étape, avec les astuces à retenir. Ils sont numérotés au fur et à mesure de leur création ; les séances renvoient au mémo utile.</p>
+  <div class="memo-grid">{cards}</div>
+</section>'''
+    nav = ('<a href="../index.html" class="nav-link">Accueil</a><a href="../mdqb/index.html" class="nav-link">MDQB</a>'
+           '<a href="../villa/index.html" class="nav-link">Villa</a><a href="../maison-des-jeux/index.html" class="nav-link">Jeux</a>'
+           '<a href="index.html" class="nav-link is-active" aria-current="page">Mémos Revit</a>')
+    return doc("Mémos Revit – Terminale TEB-AA", body, 1, nav=nav)
+
+RETOUR = ('<!-- tebaa-retour --><div style="max-width:1180px;margin:0 auto 12px;display:flex;gap:16px;flex-wrap:wrap;'
+          'font:600 14px/1.4 system-ui,Segoe UI,Arial,sans-serif"><a href="index.html" style="color:#c2410c;text-decoration:none">← Tous les mémos Revit</a>'
+          '<a href="../index.html" style="color:#5b6673;text-decoration:none">Site de la classe</a></div>')
+
+def retour_memos():
+    for m in MEMOS:
+        p = os.path.join(ROOT, "memos-revit", m["fichier"])
+        h = open(p, encoding="utf-8").read()
+        if "<!-- tebaa-retour -->" not in h:
+            h = h.replace("<body>", "<body>\n" + RETOUR, 1)
+            open(p, "w", encoding="utf-8").write(h)
+
 # =====================================================================
 def write(path, content):
     path = os.path.join(ROOT, path)
@@ -652,6 +712,8 @@ def write(path, content):
 def build():
     write("index.html", page_classe())
     write("mdqb/index.html", page_mdqb())
+    write("memos-revit/index.html", page_memos())
+    retour_memos()
     for s in SEANCES:
         write(f"mdqb/s{s['n']}.html", page_seance(s))
     spec = importlib.util.spec_from_file_location("villa_build", os.path.join(ROOT, "villa", "build.py"))
